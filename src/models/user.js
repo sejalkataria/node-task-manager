@@ -101,7 +101,6 @@ userSchema.statics.findByCredentials = async (email, password) => {
 //hash password beforing saving to database
 userSchema.pre('save', async function (next) {
     const user = this
-    console.log('just before saving')
     if (user.isModified('password')) {
         user.password = await bcrypt.hash(user.password, 8)
     }
@@ -111,7 +110,6 @@ userSchema.pre('save', async function (next) {
 
 userSchema.pre('deleteOne', async function (next) {
     const user = this
-    console.log('thisss', user._conditions._id)
     await Task.deleteMany({ owner: user._conditions._id })
     next()
 })
