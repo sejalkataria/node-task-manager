@@ -4,9 +4,6 @@ const User = require('./user')
 
 const taskSchema = new mongoose.Schema({
     description: {
-        validate(value) {
-            console.log('type of value', typeof value)
-        },
         type: String,
         required: true,
         trim: true
